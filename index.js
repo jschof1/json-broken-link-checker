@@ -1,3 +1,5 @@
+import './style.css';
+
 const jsonInput = document.getElementById('jsonInput');
 const checkLinksBtn = document.getElementById('checkLinksBtn');
 const brokenLinksContainer = document.getElementById('brokenLinksContainer');
