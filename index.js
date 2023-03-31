@@ -32,6 +32,7 @@ checkLinksBtn.addEventListener('click', async () => {
 async function processBody(obj) {
   const body = obj.body;
   const links = body.match(/https?:\/\/[^ "\]]+/g) || [];
+  const contextSize = 100;
 
   for (const link of links) {
     console.log(link);
@@ -72,7 +73,11 @@ async function processBody(obj) {
       }
     } catch (err) {
       console.error(err.message); // Log the error message for debugging
-      addBrokenLink(link, obj);
+      const linkIndex = body.indexOf(link);
+      const contextStart = Math.max(0, linkIndex - contextSize);
+      const contextEnd = linkIndex;
+      const context = body.slice(contextStart, contextEnd);
+      addBrokenLink(link, obj, context);
     }
   }
 }
@@ -84,7 +89,7 @@ brokenLinksContainer.addEventListener('change', (e) => {
   }
 });
 
-function addBrokenLink(link, obj) {
+function addBrokenLink(link, obj, context) {
   const div = document.createElement('div');
   div.classList.add('link-container');
   div.innerHTML = `
@@ -96,6 +101,8 @@ function addBrokenLink(link, obj) {
       <input type="text" data-original-link="${link}" data-object-index="${originalJson.indexOf(
     obj
   )}" placeholder="New link" disabled>
+ <h4> Context: </h4>
+  <p>${context}</p>
   `;
   brokenLinksContainer.appendChild(div);
 }
