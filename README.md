@@ -1,6 +1,6 @@
-# Adapt JSON Broken Link Checker
+JSON Broken Link Checker
 
-This is a simple, yet powerful tool that helps you find broken links within your Adapt JSON course content. It scans through the JSON input, identifies broken links, and provides you with an option to replace them with new, working links.
+This is a simple, yet powerful tool that helps you find broken links within your JSON course content. It scans through the JSON input, identifies broken links, and provides you with an option to replace them with new, working links.
 
 ## Features
 
